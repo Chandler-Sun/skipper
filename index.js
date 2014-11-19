@@ -63,7 +63,9 @@ module.exports = function toParseHTTPBody(options) {
     }
 
     // TODO: Optimization: skip bodyParser for other HTTP requests w/o a body.
-
+    if(req.headers["content-type"] === "text/xml"){
+      return next();
+    }
     // TODO: Optimization: only run bodyParser if this is a known route
 
     // log.verbose('Running request ('+req.method+' ' + req.url + ') through bodyParser...');
