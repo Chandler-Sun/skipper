@@ -63,6 +63,9 @@ module.exports = function toParseHTTPBody(options) {
     }
 
     // TODO: Optimization: skip bodyParser for other HTTP requests w/o a body.
+    if(req.url.indexOf("/datarouter/custom_api/wechat") >= 0){
+      req.headers["content-type"] = "text/xml";
+    }
     if(req.headers["content-type"] === "text/xml"){
       return next();
     }
